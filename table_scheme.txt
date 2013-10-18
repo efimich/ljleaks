@@ -1,0 +1,14 @@
+CREATE TABLE `ljdump` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uniq` varchar(255) DEFAULT NULL,
+  `link` varchar(255) DEFAULT NULL,
+  `date` datetime DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `content` longtext,
+  `n_tags` varchar(255) DEFAULT NULL,
+  `status_code` int(5) DEFAULT NULL,
+  `date_checked` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq` (`uniq`)
+) ENGINE=InnoDB AUTO_INCREMENT=2024073 DEFAULT CHARSET=utf8;
+
