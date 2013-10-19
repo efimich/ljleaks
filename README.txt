@@ -1,4 +1,5 @@
 
-file for ljleaks.ru site
+Project files for ljleaks.ru site.
 
-show and save latests livejournal.com site.
+Project about show and save latests posts from livejournal.com site.
+
