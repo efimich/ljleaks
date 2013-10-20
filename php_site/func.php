@@ -33,6 +33,11 @@ function prepare_content($rowid, $link, $content) {
         $content=substr($content,0,$p).$replace;
     } else {
         
+        // do not cut post if contain table tag
+        if ( stripos($content,"<table") > 0) {
+            return $content;
+        };
+
         $CUTON = 3000;
         $BIGLEN = 5000;
         if (strlen($content) > $BIGLEN){
