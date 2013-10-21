@@ -34,7 +34,7 @@ function prepare_content($rowid, $link, $content) {
     } else {
         
         // do not cut post if contain table tag
-        if ( stripos($content,"<table") > 0) {
+        if ( stripos($content,"<table") !== FALSE) {
             return $content;
         };
 
