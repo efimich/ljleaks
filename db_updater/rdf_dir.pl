@@ -48,7 +48,7 @@ exit(0);
 sub parse_rdf_xml($) {
 
     my ($ob, $root);
-    my ($dbh, $sth);
+    my ($dbh, $sth, $sth2);
     my ($xmlfile);
     my ($rootval, $val);
     my ($ins, $i, $tag);
@@ -64,13 +64,18 @@ sub parse_rdf_xml($) {
     print "Parse file $xmlfile ...\n";
 
     $dbh = DBI->connect( 'DBI:mysql:ljleaks_db',
-                     'USER_SQL','USER_PASS',
+                     'ljleaks_sql','XXXXXXXX',
             { AutoCommit => 1, PrintError => 0 }
     ) || die "Could not connect to database: $DBI::errstr \n";
 
 
     $sth = $dbh->prepare(q{
         INSERT INTO ljdump (uniq, link, date, title, content, n_tags)
+        VALUES (?,?,?,?,?,?)
+    }) or die $dbh->errstr;
+
+    $sth2 = $dbh->prepare(q{
+        INSERT INTO ljoper (uniq, link, date, title, content, n_tags)
         VALUES (?,?,?,?,?,?)
     }) or die $dbh->errstr;
 
@@ -125,6 +130,9 @@ sub parse_rdf_xml($) {
             $ins++;
         };
     
+        $sth2->execute($uniq, $link, $date, $title, $content, $n_tags);
+
+
     };
     $dbh->disconnect();
 

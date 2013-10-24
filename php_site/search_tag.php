@@ -27,10 +27,10 @@ if ($period == "day"){
 };
 
 $query =" SELECT id, uniq, link, DATE_ADD(date,INTERVAL 4 HOUR) as date, ";
-$query.=" title, content, n_tags FROM ljdump  ";
+$query.=" title, content, n_tags FROM ljoper  ";
 $query.=" WHERE ( DATE_ADD(date,INTERVAL 4 HOUR) > DATE_SUB(NOW(),INTERVAL $h HOUR) ) ";
 $query.=" AND ( n_tags like \"%$text%\" ) ";
-$query.=" ORDER BY date DESC";
+$query.=" ORDER BY id DESC";
 $query.=" LIMIT $startPoint,20 ";
 
 
@@ -47,6 +47,6 @@ $num_q=count($LIST);
 mysql_free_result($res);
 mysql_close($conn);
 
-include("search_tag_table.inc");
+include("search_tag_table.php");
 
 ?>

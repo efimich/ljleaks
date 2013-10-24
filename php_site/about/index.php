@@ -11,7 +11,6 @@
 <center>[ <a href="/">main</a> ]</center>
 <center>[ <a href="/about/status.php">Статистика</a> ]</center>
 <center><h3>О проекте</h3></center>
-
 <br/>
 <br/>
 <br/>

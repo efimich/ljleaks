@@ -11,12 +11,11 @@ $conn = mysql_connect($dbhost, $dbuser, $dbpass) or die ('Error connecting to my
 mysql_select_db($dbname);
 
 
-$query =" SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED; ";
-$res=mysql_query($query); 
+//$query =" SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED; ";
+//$res=mysql_query($query); 
 
 
-/*
-$query =" SELECT count(*) as num FROM ljdump  ";
+$query =" SELECT count(*) as num FROM ljoper  ";
 $query.=" WHERE date > DATE_SUB(NOW(),INTERVAL 5 HOUR) ";
 
 $msc1=microtime(true);
@@ -24,7 +23,6 @@ $res=mysql_query($query);
 $msc1=microtime(true)-$msc1;
 $row=mysql_fetch_assoc($res);
 $num_q=$row["num"];
-*/
 
 
 $page = (isset($_GET['page'])) ? $_GET['page'] : 1;
@@ -32,9 +30,9 @@ $startPoint = $page - 1;
 $startPoint = $startPoint*20;
 
 $query =" SELECT id, uniq, link, DATE_ADD(date, INTERVAL 4 HOUR) as date, ";
-$query.=" title, content, n_tags FROM ljdump ";
+$query.=" title, content, n_tags FROM ljoper ";
 $query.=" WHERE date > DATE_SUB(NOW(),INTERVAL 5 HOUR) ";
-$query.=" ORDER BY date DESC ";
+$query.=" ORDER BY id DESC ";
 $query.=" LIMIT $startPoint,20 ";
 
 
@@ -48,6 +46,6 @@ while($row=mysql_fetch_assoc($res)) $LIST[]=$row;
 mysql_free_result($res);
 mysql_close($conn);
 
-include("index_table.inc");
+include("index_table.php");
 
 ?>

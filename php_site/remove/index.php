@@ -40,7 +40,7 @@
 <script src="/js/jquery-latest.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 
-<? include("../metrika.inc"); ?>
+<? include("../metrika.php"); ?>
 
 </body>
 </html>

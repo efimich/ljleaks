@@ -10,15 +10,11 @@ include("config.php");
 $conn = mysql_connect($dbhost, $dbuser, $dbpass) or die ('Error connecting to mysql');
 mysql_select_db($dbname);
 
-$query =" SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED; ";
-$res=mysql_query($query); 
 
-
-$query =" SELECT date, n_tags FROM ljdump ";
+$query =" SELECT date, n_tags FROM ljoper ";
 $query.=" WHERE ( date > DATE_SUB(NOW(),INTERVAL 5 HOUR) ) ";
 $query.=" AND ( n_tags IS NOT NULL ) ";
 
-//echo $query;
 
 $msc2=microtime(true);
 $res=mysql_query($query); 
@@ -33,6 +29,6 @@ $total=count($LIST);
 mysql_free_result($res);
 mysql_close($conn);
 
-include("trends_page.inc");
+include("trends_page.php");
 
 ?>

@@ -10,41 +10,15 @@ $conn = mysql_connect($dbhost, $dbuser, $dbpass) or die ('Error connecting to my
 mysql_select_db($dbname);
 
 
+$query =" SELECT count(*) as num FROM ljoper ";
+$res=mysql_query($query); 
+$row=mysql_fetch_assoc($res);
+$totaloper=$row["num"];
+
 $query =" SELECT count(*) as num FROM ljdump ";
 $res=mysql_query($query); 
 $row=mysql_fetch_assoc($res);
-$total=$row["num"];
-
-$query =" SELECT count(*) as num FROM ljdump ";
-$query.=" WHERE (date_checked IS NULL) ";
-$res=mysql_query($query); 
-$row=mysql_fetch_assoc($res);
-$unchecked=$row["num"];
-
-$query =" SELECT count(*) as num FROM ljdump ";
-$query.=" WHERE (date_checked IS NOT NULL) ";
-$res=mysql_query($query); 
-$row=mysql_fetch_assoc($res);
-$checked=$row["num"];
-
-$query =" SELECT count(*) as num FROM ljdump ";
-$query.=" WHERE (status_code = 200) ";
-$res=mysql_query($query); 
-$row=mysql_fetch_assoc($res);
-$code200=$row["num"];
-
-$query =" SELECT count(*) as num FROM ljdump ";
-$query.=" WHERE (status_code = 404) ";
-$res=mysql_query($query); 
-$row=mysql_fetch_assoc($res);
-$code404=$row["num"];
-
-$query =" SELECT count(*) as num FROM ljdump ";
-$query.=" WHERE (status_code = 302) ";
-$res=mysql_query($query); 
-$row=mysql_fetch_assoc($res);
-$code302=$row["num"];
-
+$totaldump=$row["num"];
 
 
 mysql_free_result($res);
@@ -64,15 +38,10 @@ mysql_close($conn);
 <center>[ <a href="/">main</a> ]</center>
 <br/>
 <br/>
-<center>Всего записей: <? echo $total; ?> </center>
-<br/>
-<center>Проверено записей: <? echo $checked; ?> </center>
-<center>Осталось проверить: <? echo $unchecked; ?> </center>
+<center>Записей в оперативной базе: <? echo $totaloper; ?> </center>
+<center>В полной базе: <? echo $totaldump; ?> </center>
 <br/>
 <br/>
-<center>Записей с кодом 200: <? echo $code200; ?> </center>
-<center>Записей с кодом 404: <? echo $code404; ?> </center>
-<center>Записей с кодом 302: <? echo $code302; ?> </center>
 <br/>
 <br/>
 

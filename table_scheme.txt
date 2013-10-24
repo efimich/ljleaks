@@ -9,6 +9,26 @@ CREATE TABLE `ljdump` (
   `status_code` int(5) DEFAULT NULL,
   `date_checked` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `uniq` (`uniq`)
-) ENGINE=InnoDB AUTO_INCREMENT=2024073 DEFAULT CHARSET=utf8;
-
+  UNIQUE KEY `uniq` (`uniq`),
+  KEY `status_code` (`status_code`),
+  KEY `date` (`date`),
+  KEY `date_checked` (`date_checked`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
+===
+CREATE TABLE `ljoper` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uniq` varchar(255) DEFAULT NULL,
+  `link` varchar(255) DEFAULT NULL,
+  `date` datetime DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `content` longtext,
+  `n_tags` varchar(255) DEFAULT NULL,
+  `status_code` int(5) DEFAULT NULL,
+  `date_checked` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq` (`uniq`),
+  KEY `status_code` (`status_code`),
+  KEY `date` (`date`),
+  KEY `date_checked` (`date_checked`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
+===

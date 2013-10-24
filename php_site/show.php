@@ -16,7 +16,7 @@ if ($reqid <= 0){
 };
 
 $query =" SELECT id, uniq, link, DATE_ADD(date,INTERVAL 4 HOUR) as date, ";
-$query.=" title, content, n_tags FROM ljdump  ";
+$query.=" title, content, n_tags FROM ljoper  ";
 $query.=" WHERE id = $reqid ";
 
 $res=mysql_query($query); 

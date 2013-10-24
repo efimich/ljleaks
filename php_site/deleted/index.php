@@ -10,21 +10,25 @@ include("../config.php");
 $conn = mysql_connect($dbhost, $dbuser, $dbpass) or die ('Error connecting to mysql');
 mysql_select_db($dbname);
 
+$query =" SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED; ";
+$res=mysql_query($query); 
 
-$query =" SELECT count(*) as num FROM ljdump ";
+/*
+$query =" SELECT count(*) as num FROM ljoper ";
 $query.=" WHERE status_code = 404 ";
 $res=mysql_query($query); 
 $row=mysql_fetch_assoc($res);
 $num_q=$row["num"];
+*/
 
 $page = (isset($_GET['page'])) ? $_GET['page'] : 1;
 $startPoint = $page - 1;
 $startPoint = $startPoint*20;
 
 $query =" SELECT id, uniq, link, DATE_ADD(date,INTERVAL 4 HOUR) as date, ";
-$query.=" title, content, n_tags FROM ljdump ";
+$query.=" title, content, n_tags FROM ljoper ";
 $query.=" WHERE status_code = 404 ";
-$query.=" ORDER BY date DESC ";
+$query.=" ORDER BY id DESC ";
 $query.=" LIMIT $startPoint,20 ";
 
 
