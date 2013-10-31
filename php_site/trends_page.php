@@ -9,7 +9,7 @@
 
 <center><h1>LiveJournal Leaks</h1></center>
 <center>[ <a href="/">main</a> ]</center>
-<center><h3>Trends</h3></center>
+<center><h3>тренды</h3></center>
 <br/>
 <center>выборка по <? echo $total; ?> записям, с тегами, за последний час</center>
 <br/>

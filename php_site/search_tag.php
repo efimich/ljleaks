@@ -8,9 +8,9 @@ $conn = mysql_connect($dbhost, $dbuser, $dbpass) or die ('Error connecting to my
 mysql_select_db($dbname);
 
 
-$text=$_GET["tag"];
+$tag=$_GET["tag"];
 
-if (strlen($text) == 0){
+if (strlen($tag) == 0){
     echo "Nothing to find, no search tag provided.\n";
     return 0;
 };
@@ -29,7 +29,7 @@ if ($period == "day"){
 $query =" SELECT id, uniq, link, DATE_ADD(date,INTERVAL 4 HOUR) as date, ";
 $query.=" title, content, n_tags FROM ljoper  ";
 $query.=" WHERE ( DATE_ADD(date,INTERVAL 4 HOUR) > DATE_SUB(NOW(),INTERVAL $h HOUR) ) ";
-$query.=" AND ( n_tags like \"%$text%\" ) ";
+$query.=" AND ( n_tags like \"%$tag%\" ) ";
 $query.=" ORDER BY id DESC";
 $query.=" LIMIT $startPoint,20 ";
 
@@ -42,7 +42,19 @@ $msc2=microtime(true)-$msc2;
 $LIST=array(); 
 while($row=mysql_fetch_assoc($res)) $LIST[]=$row; 
 
-$num_q=count($LIST);
+if ($h==24){
+    $query =" SELECT count(*) as num FROM ljoper ";
+    $query.=" WHERE ( DATE_ADD(date,INTERVAL 4 HOUR) > DATE_SUB(NOW(),INTERVAL $h HOUR) ) ";
+    $query.=" AND ( n_tags like \"%$tag%\" ) ";
+
+    $res=mysql_query($query); 
+
+    $tmp=mysql_fetch_assoc($res);
+    $num_q=$tmp["num"];
+
+} else {
+    $num_q=count($LIST);
+};
 
 mysql_free_result($res);
 mysql_close($conn);

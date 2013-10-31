@@ -10,10 +10,10 @@
 
 <center><h1>LiveJournal Leaks</h1></center>
 <center>[ <a href="/">main</a> ]</center>
-<center><h3>Search by tag "<? echo $text; ?>"</h3></center>
+<center><h3>Search by tag "<? echo $tag; ?>"</h3></center>
 <br/>
 <center>Добавлено записей по тегу за последний час: <? echo $num_q; ?></center>
-<center>Поиск за <a href="?tag=<? echo $text; ?>&period=day">день</a>.</center>
+<center>Поиск за <a href="?tag=<? echo $tag; ?>&period=day">день</a>.</center>
 <br/>
 <center>
 <form action="" method="GET">
@@ -69,6 +69,24 @@ echo "</td></tr>\n";
 </table>
 
 <br/>
+<br/>
+
+<center>
+<?
+$durl  = "?page=".($page+1);
+$durl .= "&tag=$tag&period=$period";
+$durl2  = "?page=".($page-1);
+$durl2 .= "&tag=$tag&period=$period";
+
+echo '<font size="+2"><a href="'.$durl.'">&lt;&lt; prev 20 posts</a></font>';
+
+if ($page > 1) {
+    echo '<font size="+2">&nbsp;&nbsp; | &nbsp;&nbsp;</font>';
+    echo '<font size="+2"><a href="'.$durl2.'">next 20 posts &gt;&gt;</a></font>';
+};
+?>
+</center>
+
 <br/>
 
 <script src="js/jquery-latest.js"></script>

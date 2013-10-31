@@ -64,7 +64,7 @@ sub parse_rdf_xml($) {
     print "Parse file $xmlfile ...\n";
 
     $dbh = DBI->connect( 'DBI:mysql:ljleaks_db',
-                     'ljleaks_sql','XXXXXXXX',
+                     'ljleaks_sql','XXXXXX',
             { AutoCommit => 1, PrintError => 0 }
     ) || die "Could not connect to database: $DBI::errstr \n";
 
