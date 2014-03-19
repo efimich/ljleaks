@@ -11,7 +11,7 @@ mysql_select_db($dbname);
 
 
 $query =" DELETE FROM ljoper ";
-$query.=" WHERE DATE_ADD(date, INTERVAL 4 HOUR) < DATE_SUB(NOW(),INTERVAL 24 HOUR) ";
+$query.=" WHERE date < DATE_SUB(NOW(), INTERVAL 28 HOUR) ";
 
 
 $res=mysql_query($query); 

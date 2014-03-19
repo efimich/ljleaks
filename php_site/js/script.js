@@ -26,3 +26,16 @@ jQuery(document).ready(function() {
 
 	});
 });
+
+$(document).ready(function() {
+    $('table table').click(function() {
+       $(this).find('.content').toggle();
+
+       var $upto = $(this).offset().top - 50
+       $(document.body).animate({
+            'scrollTop': $upto
+       }, 250);
+
+    }); 
+});
+

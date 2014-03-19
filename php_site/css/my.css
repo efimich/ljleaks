@@ -3,7 +3,7 @@ img {
  max-width: 100%;
 };
 
-.content iframe. img {
+.content iframe, img {
  height: auto;
  max-width: 100%;
 };
@@ -12,3 +12,4 @@ img {
  height: auto;
  max-width: 100%;
 };
+

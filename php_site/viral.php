@@ -10,7 +10,7 @@ mysql_select_db($dbname);
 
 
 $query =" SELECT date, link, content FROM ljoper ";
-$query.=" WHERE date > DATE_SUB(NOW(),INTERVAL 6 HOUR)";
+$query.=" WHERE date > DATE_SUB(NOW(),INTERVAL 5 HOUR)";
 
 
 $msc2=microtime(true);

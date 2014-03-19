@@ -16,7 +16,7 @@ mysql_select_db($dbname);
 
 
 $query =" SELECT count(*) as num FROM ljoper  ";
-$query.=" WHERE date > DATE_SUB(NOW(),INTERVAL 5 HOUR) ";
+$query.=" WHERE date > DATE_SUB(NOW(),INTERVAL 4 HOUR) ";
 
 $msc1=microtime(true);
 $res=mysql_query($query); 
@@ -25,16 +25,18 @@ $row=mysql_fetch_assoc($res);
 $num_q=$row["num"];
 
 
+$fullpost = (isset($_GET['full'])) ? $_GET['full'] : 1;
+
+
 $page = (isset($_GET['page'])) ? $_GET['page'] : 1;
 $startPoint = $page - 1;
 $startPoint = $startPoint*20;
 
 $query =" SELECT id, uniq, link, DATE_ADD(date, INTERVAL 4 HOUR) as date, ";
 $query.=" title, content, n_tags FROM ljoper ";
-$query.=" WHERE date > DATE_SUB(NOW(),INTERVAL 5 HOUR) ";
+$query.=" WHERE date > DATE_SUB(NOW(),INTERVAL 4 HOUR) ";
 $query.=" ORDER BY id DESC ";
 $query.=" LIMIT $startPoint,20 ";
-
 
 $msc2=microtime(true);
 $res=mysql_query($query); 

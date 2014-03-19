@@ -10,10 +10,9 @@
 
 <center><h1>LiveJournal Leaks</h1></center>
 <center>[ <a href="/">main</a> ]</center>
-<center><h3>Search by tag "<? echo $tag; ?>"</h3></center>
+<center><h3>поиск по тегу "<? echo $tag; ?>"</h3></center>
 <br/>
-<center>Добавлено записей по тегу за последний час: <? echo $num_q; ?></center>
-<center>Поиск за <a href="?tag=<? echo $tag; ?>&period=day">день</a>.</center>
+<center>Добавлено записей по тегу за последний день: <? echo $num_q; ?></center>
 <br/>
 <center>
 <form action="" method="GET">
@@ -52,7 +51,7 @@ $n_tags = $row['n_tags'];
 $n_tags = str_replace(",",", ",$n_tags);
 echo "<tr><td>Теги: </td><td>".$n_tags."&nbsp;</td></tr>\n";
 
-$content = prepare_content($row['id'], $row['link'], $row['content']);
+$content = prepare_content3($row['id'], $row['link'], $row['content']);
 
 
 
@@ -74,9 +73,9 @@ echo "</td></tr>\n";
 <center>
 <?
 $durl  = "?page=".($page+1);
-$durl .= "&tag=$tag&period=$period";
+$durl .= "&tag=$tag";
 $durl2  = "?page=".($page-1);
-$durl2 .= "&tag=$tag&period=$period";
+$durl2 .= "&tag=$tag";
 
 echo '<font size="+2"><a href="'.$durl.'">&lt;&lt; prev 20 posts</a></font>';
 

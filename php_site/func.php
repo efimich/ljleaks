@@ -59,6 +59,15 @@ function prepare_content($rowid, $link, $content) {
 };
 
 
+function prepare_content_full($content) {
+
+    $content = unhtmlspecialchars($content);
+    $content = stripslashes($content);
+    $content = nl2br($content);
+
+    return $content;
+};
+
 function prepare_content2($rowid, $link, $content) {
 
     $content = unhtmlspecialchars($content);
@@ -68,6 +77,21 @@ function prepare_content2($rowid, $link, $content) {
     $p=stripos($content,"<lj-cut");
     if ( $p>0 ){
         $replace = "<a target=\"_blank\" href=\"$link#cutid1\">( Read more )</a>";
+        $content=substr($content,0,$p).$replace;
+    };
+
+    return $content;
+};
+
+function prepare_content3($rowid, $link, $content) {
+
+    $content = unhtmlspecialchars($content);
+    $content = stripslashes($content);
+    $content = nl2br($content);
+
+    $p=stripos($content,"<lj-cut");
+    if ( $p>0 ){
+        $replace = "\n".'<br/><a target="_blank" href="/show.php?id='.$rowid.'">( Read more )</a>';
         $content=substr($content,0,$p).$replace;
     };
 

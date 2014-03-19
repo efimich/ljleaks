@@ -12,7 +12,7 @@ mysql_select_db($dbname);
 
 
 $query =" SELECT date, n_tags FROM ljoper ";
-$query.=" WHERE ( date > DATE_SUB(NOW(),INTERVAL 5 HOUR) ) ";
+$query.=" WHERE ( date > DATE_SUB(NOW(),INTERVAL 4 HOUR) ) ";
 $query.=" AND ( n_tags IS NOT NULL ) ";
 
 
